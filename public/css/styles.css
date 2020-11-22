@@ -1,0 +1,107 @@
+body {
+    background: transparent linear-gradient(0deg, #21212A, #323234 100%);
+    margin: 0;
+}
+
+li {
+    display: inline;
+}
+
+.base-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    
+}
+
+nav {
+    width: 100%;
+    height: 10vh;
+    background: #202020;
+    display: grid;
+    position: fixed;
+    grid-template-columns: 35% 45% 20%;
+    align-items: center;
+}
+
+.logo {
+    margin: 0.5em;
+    margin-left: 3em;
+    height: 90%;
+}
+
+.banner {
+    width: 100%;
+}
+
+.button {
+    margin: 0.2em;
+    text-align: center;
+    letter-spacing: 0.72px;
+    color: #FFFFFF;
+    padding: 0.2rem;
+}
+
+ul.menu-buttons {
+    justify-self: right;
+    list-style-type: none;
+    font: normal normal normal 1.35rem Arial;
+    letter-spacing: 0.72px;
+}
+
+ul.login-buttons {
+    border-radius: 25px;
+    margin-left: 10%;
+    margin-right: 10%;
+    background: transparent linear-gradient(90deg, #223CE3, #A91313 60%) ;
+    padding: 0;
+    list-style-type: none;
+    font: normal normal normal 1.35rem Arial;
+    text-align: center;
+    letter-spacing: 0.72px;
+}
+
+.login-button {
+    color: #FFFFFF;
+    margin: 0.2em;
+    text-align: center;
+    margin-right: 6px;
+    letter-spacing: 0.72px;
+    padding: 0.2rem;
+}
+
+.register-button {
+    margin: 0.2em;
+    text-align: center;
+    letter-spacing: 0.72px;
+    color: #FFFFFF;
+    padding: 0.2rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column; 
+}
+
+.qa {
+    background: transparent linear-gradient(0deg, #21212A, #323234 100%);
+    font-size: 1.5rem;
+    color: #FFFFFF;
+}
+
+.question-block {
+    display: inline-flex;
+    background: #323234;
+    border: 1px solid;
+    margin: 1%;
+    padding: 0.2rem;
+    letter-spacing: 0.72px;
+    
+}
+
+footer {
+    background: #202020;
+    text-align: center;
+    padding: 3px;
+    color: white;
+}
