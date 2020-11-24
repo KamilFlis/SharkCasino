@@ -9,15 +9,23 @@
     <body>
         <div class="container">
             <div class="logo-login">
-                <a href="index.html"><img src="public/img/logoo.png"></a>
+                <a href="startPage.php"><img src="public/img/logoo.png"></a>
                 <p class="quote">Play to win!</p>
             </div>
            
             <div class="login-container">
-                <form class="login">
+                <form class="login" action="login" method="POST">
                     <input name="username" type="text" placeholder="username">
                     <input name="password" type="password" placeholder="password">
-                    <button>Login</button>
+                    <button type="submit">Login</button>
+                    <div class="messages">
+                        <?php if(isset($messages)) {
+                            foreach($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
                 </form>
             </div>
         
