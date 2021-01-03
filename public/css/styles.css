@@ -10,8 +10,8 @@ li {
 .base-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
-    
 }
 
 nav {
@@ -80,11 +80,12 @@ ul.login-buttons {
 
 main {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .qa {
     background: transparent linear-gradient(0deg, #21212A, #323234 100%);
+    width: 100vw;
     font-size: 1.5rem;
     color: #FFFFFF;
 }
@@ -96,7 +97,6 @@ main {
     margin: 1%;
     padding: 0.2rem;
     letter-spacing: 0.72px;
-    
 }
 
 footer {
@@ -162,4 +162,28 @@ button {
 p.quote {
     color: #D3D3D3;
     font-size: 55px;
+}
+
+.catchphrase {
+    background: #4242496c;
+    border-radius: 2em;
+    display: flex;
+    margin-top: 10%;
+    height: 15vh;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+}
+
+.catchphrase h1 {
+    color: white;
+}
+
+.games {
+    display: flex;
+    flex-direction: row;
+}
+
+.games img {
+    margin: 3vw;
 }

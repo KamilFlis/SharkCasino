@@ -9,7 +9,7 @@
     <body>
         <div class="container">
             <div class="logo-login">
-                <a href="startPage.php"><img src="public/img/logoo.png"></a>
+                <img src="public/img/logoo.png">
                 <p class="quote">Play to win!</p>
             </div>
            

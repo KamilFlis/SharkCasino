@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html lang="eng">
@@ -38,14 +37,17 @@
             </ul>
         <?php endif; ?>
     </nav>
-    <section>
-        <img class="banner" src="public/img/sample_banner.png">
+
+    <section class="catchphrase">
+        <h1>Play our best cards games!</h1>
     </section>
-    <main class="qa">
-        <div class="question-block">How to play</div>
-        <div class="question-block">How to pay in</div>
-        <div class="question-block">Questions (FAQ)</div>
+
+    <main class="games">
+        <img src="public/img/coming_soon1.jpg">
+        <img src="public/img/coming_soon1.jpg">
+        <img src="public/img/coming_soon1.jpg">
     </main>
+
 </div>
 <footer>
     Copyright 2020 | Created by Kamil Flis

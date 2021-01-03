@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
 require_once 'AppController.php';
 require_once __DIR__.'/../models/User.php';
@@ -10,8 +10,6 @@ class SecurityController extends AppController {
 
         $userRepository = new UserRepository();
 
-        $user = new User("admin", "email@email.com", "admin1", "Jon", "Snow");
-
         if(!$this->isPost()) {
             return $this->render("loginPage");
         }
@@ -20,6 +18,8 @@ class SecurityController extends AppController {
         $password = $_POST["password"];
 
         $user = $userRepository->getUser($username);
+        $_SESSION["username"] = $user->getUsername();
+        $_SESSION["name"] = $user->getName();
 
         if(!$user) {
             return $this->render("loginPage", ["messages" => ["User doesn't exist!"]]);
@@ -30,10 +30,10 @@ class SecurityController extends AppController {
         }
 
         if($user->getPassword() !== $password) {
-            return $this->render("loginPage", ["messages" => ["Wrong passowrd!"]]);
+            return $this->render("loginPage", ["messages" => ["Wrong password!"]]);
         }
 
-        return $this->render("loggedIn", ["messages" => [$user->getName()]]);
+        return $this->render("startPage");
     }
 
 }
