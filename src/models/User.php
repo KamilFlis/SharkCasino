@@ -66,7 +66,4 @@ class User {
     public function setWalletId(int $walletId): void {
         $this->walletId = $walletId;
     }
-
-
-
 }

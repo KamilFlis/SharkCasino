@@ -5,7 +5,6 @@ export default class Slot {
   constructor(domElement) {
     Symbol.preload();
 
-
     this.currentSymbols = [
       ["pharaoh", "pharaoh", "pharaoh"],
       ["pharaoh", "pharaoh", "pharaoh"],
@@ -31,30 +30,39 @@ export default class Slot {
 
     this.spinButton = document.querySelector(".spin");
     this.spinButton.addEventListener("click", () => this.spin());
-
   }
 
-  updateMoney() {
-    const xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "slotsHandler.php", true);
-    xmlhttp.send();
+  // get username from $_SESSION variable from server
+  async getUsername() {
+    const response = await fetch("/getUsername");
+    return await response.json();
+  }
 
+  async updateMoney(win) {
+    const moneyMessage = document.querySelector(".message");
+    const moneyValue = parseFloat(moneyMessage.innerHTML.split(" ").slice(-1)[0]);
 
+    let username = null;
+    await this.getUsername().then(value => {
+      username = value["username"];
+    })
 
-    // $.ajax({
-    //   type: "POST",
-    //   data: {
-    //     id: 1,
-    //     amount: 10
-    //   },
-    //   url: "../../src/controllers/slotsHandler.php",
-    //   dataType: "html",
-    //   async: false,
-    //   success: function(data) {
-    //     result=data;
-    //   }
-    // });
+    const data = {
+      username: username,
+      money: moneyValue,
+      win: win
+    };
 
+    fetch("/getMoney", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(r => r.json())
+      .then(value => {
+      moneyMessage.innerHTML = "Your money: " + value["money"];
+    });
   }
 
   spin() {
@@ -69,15 +77,6 @@ export default class Slot {
       [Symbol.random(), Symbol.random(), Symbol.random()]
     ];
 
-
-    // take money from wallet
-    this.updateMoney();
-    let won = this.checkIfWon();
-    // put money in wallet
-    if(won) {
-
-    }
-
     return Promise.all(
       this.reels.map((reel) => {
         reel.renderSymbols(this.nextSymbols[reel.idx]);
@@ -87,11 +86,11 @@ export default class Slot {
   }
 
   checkIfWon() {
-    for(let k = 0; k < 3; k++) {
+    for(let i = 0; i < 3; i++) {
       let countSame = 0;
-      const value = this.nextSymbols[0][k];
-      for (let i = 0; i < 5; i++) {
-        if (this.nextSymbols[k][i] === value) {
+      const value = this.nextSymbols[0][i];
+      for (let j = 0; j < 5; j++) {
+        if (this.nextSymbols[i][j] === value) {
           countSame++;
           if (countSame === 5) {
             return true;
@@ -104,14 +103,11 @@ export default class Slot {
 
   onSpinStart() {
     this.spinButton.disabled = true;
-
-    console.log("SPIN START");
   }
 
   onSpinEnd() {
+    const win = this.checkIfWon();
+    this.updateMoney(win);
     this.spinButton.disabled = false;
-
-    console.log("SPIN END");
-
   }
 }
