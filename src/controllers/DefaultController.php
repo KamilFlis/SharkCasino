@@ -1,7 +1,6 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__."/../services/UserService.php";
 
 class DefaultController extends AppController {
 
@@ -25,9 +24,4 @@ class DefaultController extends AppController {
         $this->render("logout");
     }
 
-    public function slotsCleopatra() {
-        $userService = new UserService();
-        $wallet = $userService->getUserWallet("kamil123");
-        $this->render("slotsCleopatra", ["messages" => [$wallet->getAmount()]]);
-    }
 }

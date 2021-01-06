@@ -27,6 +27,24 @@ class UserRepository extends Repository {
             $user["surname"],
             $user["wallet_id"]
         );
+    }
 
+    public function addUser(User $user) {
+        $statement = $this->database->connect()->prepare("INSERT INTO public.users (username, email, password, name, surname, wallet_id) VALUES (:username, :email, :password, :name, :surname, :wallet_id);");
+        $username = $user->getUsername();
+        $email = $user->getEmail();
+        $password = $user->getPassword();
+        $name = $user->getName();
+        $surname = $user->getSurname();
+        $wallet_id = $user->getWalletId();
+
+        $statement->bindParam(":username", $username, PDO::PARAM_STR);
+        $statement->bindParam(":email", $email, PDO::PARAM_STR);
+        $statement->bindParam(":password", $password, PDO::PARAM_STR);
+        $statement->bindParam(":name", $name, PDO::PARAM_STR);
+        $statement->bindParam(":surname", $surname, PDO::PARAM_STR);
+        $statement->bindParam(":wallet_id", $wallet_id, PDO::PARAM_INT);
+
+        $statement->execute();
     }
 }

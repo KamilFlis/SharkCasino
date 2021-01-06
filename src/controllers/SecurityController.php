@@ -18,8 +18,10 @@ class SecurityController extends AppController {
         $password = $_POST["password"];
 
         $user = $userRepository->getUser($username);
-        $_SESSION["username"] = $user->getUsername();
-        $_SESSION["name"] = $user->getName();
+        if($user) {
+            $_SESSION["username"] = $user->getUsername();
+            $_SESSION["name"] = $user->getName();
+        }
 
         if(!$user) {
             return $this->render("loginPage", ["messages" => ["User doesn't exist!"]]);

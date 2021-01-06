@@ -27,7 +27,7 @@
                 ?>
             </div>
             <div>
-                <a href="startPage" class="button">Log out</a>
+                <a href="logout" class="button">Log out</a>
             </div>
         </ul>
 
