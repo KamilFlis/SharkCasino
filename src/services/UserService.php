@@ -7,17 +7,15 @@ require_once  __DIR__."/../repository/WalletRepository.php";
 class UserService {
 
     private UserRepository $userRepository;
-    private WalletRepository  $walletRepository;
+    private WalletRepository $walletRepository;
 
     public function __construct() {
         $this->userRepository = new UserRepository();
         $this->walletRepository = new WalletRepository();
     }
 
-    public function getUserWalletByUsername(string $username): ?Wallet {
-        $user = $this->userRepository->getUser($username);
-
-        return $this->walletRepository->getWallet($user->getWalletId());
+    public function getWalletAmountByUsername(string $username): float {
+        return $this->userRepository->getWalletAmountByUsername($username);
     }
 
     public function setWalletAmountByUsername(string $username, $amount) {

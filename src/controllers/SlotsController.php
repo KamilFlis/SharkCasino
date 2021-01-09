@@ -7,8 +7,13 @@ class SlotsController extends AppController {
 
     public function slotsCleopatra() {
         $userService = new UserService();
-        $wallet = $userService->getUserWalletByUsername($_SESSION["username"]);
-        $this->render("slotsCleopatra", ["messages" => [$wallet->getAmount()]]);
+        if(isset($_SESSION["username"])) {
+            $amount = $userService->getWalletAmountByUsername($_SESSION["username"]);
+            $this->render("slotsCleopatra", ["messages" => [$amount]]);
+        } else {
+            echo '<script>alert("You must be logged in")</script>';
+            $this->render("slotsPage");
+        }
     }
 
     public function getMoney() {

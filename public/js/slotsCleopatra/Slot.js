@@ -1,5 +1,5 @@
-import Reel from "./Reel.js";
-import Symbol from "./Symbol.js";
+import Reel from "./Reel";
+import Symbol from "./Symbol";
 
 export default class Slot {
   constructor(domElement) {
@@ -66,7 +66,13 @@ export default class Slot {
   }
 
   spin() {
-    this.onSpinStart();
+    this.spinButton.disabled = true;
+
+    const moneyMessage = document.querySelector(".message");
+    const moneyValue = parseFloat(moneyMessage.innerHTML.split(" ").slice(-1)[0]);
+    if(moneyValue <= 0) {
+      return;
+    }
 
     this.currentSymbols = this.nextSymbols;
     this.nextSymbols = [
@@ -99,10 +105,6 @@ export default class Slot {
       }
     }
     return false;
-  }
-
-  onSpinStart() {
-    this.spinButton.disabled = true;
   }
 
   onSpinEnd() {

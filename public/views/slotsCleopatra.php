@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Cleopatra Slots</title>
     <link rel="stylesheet" href="public/css/slots.css">
-    <script type="module" src="public/js/index.js" defer></script>
+    <script type="module" src="public/js/slotsCleopatra/index.js" defer></script>
 </head>
 <body>
     <div class="messages">

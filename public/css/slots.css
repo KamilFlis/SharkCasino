@@ -1,0 +1,38 @@
+body {
+    background: url("../img/slotsCleopatra/cleopatra_bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slots {
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    max-height: calc((3/5) * 45vw);
+}
+
+.reel {
+    overflow: hidden;
+    width: 55vw;
+}
+
+.reel > .icons > img {
+    width: calc(100% + 6px);
+    margin: -3px 0 0 -3px;
+    height: auto;
+    transform: translate3d(0, 0, 0);
+}
+
+.messages {
+    font-size: 12px;
+    color: white;
+}

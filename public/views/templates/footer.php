@@ -1,0 +1,1 @@
+<footer>Copyright 2020 | Created by Kamil Flis</footer>
