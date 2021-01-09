@@ -9,7 +9,7 @@
     <body>
         <div class="container">
             <div class="logo-login">
-                <img src="public/img/logoo.png">
+                <img src="public/img/logo.png" alt="logo">
                 <p class="quote">Play to win!</p>
             </div>
            
@@ -28,8 +28,6 @@
                     </div>
                 </form>
             </div>
-        
-            
         </div>
         <footer>
             Copyright 2020 | Created by Kamil Flis

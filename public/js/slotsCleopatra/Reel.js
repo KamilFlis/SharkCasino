@@ -1,4 +1,4 @@
-import Symbol from "./Symbol.js";
+import Symbol from "./Symbol";
 
 export default class Reel {
   constructor(reelContainer, idx, initialSymbols) {

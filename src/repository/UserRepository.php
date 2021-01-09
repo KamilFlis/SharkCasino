@@ -5,6 +5,15 @@ require_once __DIR__."/../models/User.php";
 
 class UserRepository extends Repository {
 
+    public function getWalletAmountByUsername($username): float {
+        $statement = $this->database->connect()->prepare("SELECT amount FROM public.users INNER JOIN wallet w ON w.id = users.wallet_id AND username = :username");
+        $statement->bindParam(":username", $username, PDO::PARAM_STR);
+        $statement->execute();
+
+        $wallet = $statement->fetch(PDO::FETCH_NUM);
+        return floatval($wallet["amount"]);
+    }
+
     public function getUser(string $username): ?User {
         $statement = $this->database->connect()->prepare("
             SELECT * FROM public.users WHERE username = :username
@@ -30,21 +39,18 @@ class UserRepository extends Repository {
     }
 
     public function addUser(User $user) {
-        $statement = $this->database->connect()->prepare("INSERT INTO public.users (username, email, password, name, surname, wallet_id) VALUES (:username, :email, :password, :name, :surname, :wallet_id);");
-        $username = $user->getUsername();
-        $email = $user->getEmail();
-        $password = $user->getPassword();
-        $name = $user->getName();
-        $surname = $user->getSurname();
-        $wallet_id = $user->getWalletId();
+        $statement = $this->database->connect()->prepare("
+                INSERT INTO public.users (username, email, password, name, surname, wallet_id) 
+                VALUES (?, ?, ?, ?, ?, ?);
+        ");
 
-        $statement->bindParam(":username", $username, PDO::PARAM_STR);
-        $statement->bindParam(":email", $email, PDO::PARAM_STR);
-        $statement->bindParam(":password", $password, PDO::PARAM_STR);
-        $statement->bindParam(":name", $name, PDO::PARAM_STR);
-        $statement->bindParam(":surname", $surname, PDO::PARAM_STR);
-        $statement->bindParam(":wallet_id", $wallet_id, PDO::PARAM_INT);
-
-        $statement->execute();
+        $statement->execute([
+            $user->getUsername(),
+            $user->getEmail(),
+            $user->getPassword(),
+            $user->getName(),
+            $user->getSurname(),
+            $user->getWalletId()
+        ]);
     }
 }

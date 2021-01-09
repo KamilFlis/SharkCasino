@@ -5,51 +5,51 @@
 <head>
     <title>Shark Casino</title>
     <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="public/js/hamburger.js" defer></script>
+    <script type="text/javascript" src="public/js/expand.js" defer></script>
 </head>
 
 <body>
 <div class="base-container">
-    <nav>
-        <img class ="logo" src="public/img/logoo.png" alt="logo">
-        <ul class="menu-buttons">
-            <li><a href="slotsPage" class="button">Slots</a></li>
-            <li><a href="#" class="button">Roulette</a></li>
-            <li><a href="cardsPage" class="button">Cards</a></li>
-            <li><a href="#" class="button">Jackpot</a></li>
-        </ul>
-        <?php if(isset($_SESSION["name"])):?>
-            <ul class="login-buttons">
-                <div class="messages">
-                    <?php
-                    if(isset($_SESSION["name"])) {
-                        echo "Welcome ".$_SESSION["name"];
-                    }
-                    ?>
-                </div>
-                <div>
-                    <a href="logout" class="button">Log out</a>
-                </div>
-            </ul>
+<?php include("public/views/templates/navbar.php") ?>
+    <div class="banner">
+        <img src="public/img/banner.png" alt="banner">
+    </div>
 
-        <?php else:?>
-            <ul class="login-buttons">
-                <li><a href="loginPage" class="login-button">Login</a></li>
-                <li><a href="#" class="register-button">Register</a></li>
-            </ul>
-        <?php endif; ?>
-    </nav>
-    <section>
-        <img class="banner" src="public/img/sample_banner.png">
-    </section>
-    <main class="qa">
-        <div class="question-block">How to play</div>
-        <div class="question-block">How to pay in</div>
-        <div class="question-block">Questions (FAQ)</div>
-    </main>
+    <div class="catchphrase">
+        <h1>All Games!</h1>
+    </div>
+
+    <div class="games">
+         <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <a href="slotsCleopatra"><img src="public/img/cleopatraslots.png" alt="cleopatra slots"></a>
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+        <img src="public/img/coming_soon.jpg" alt="coming soon">
+    </div>
+
+    <div class="qa">
+        <div class="question-block" id="question_1" onclick="expand(this)">How to play</div>
+        <section class="answer-block">
+            <p>gfkgkordghkofhkhkdohkdorhkdorhkdor</p>
+        </section>
+        <div class="question-block" id="question_2" onclick="expand(this)">How to pay in</div>
+        <section class="answer-block">
+            <p>hjtfkjygfytgfyuyr</p>
+        </section>
+        <div class="question-block" id="question_3" onclick="expand(this)">Questions (FAQ)</div>
+        <section class="answer-block">
+            <p>agdshdf</p>
+        </section>
+    </div>
 </div>
-<footer>
-    Copyright 2020 | Created by Kamil Flis
-</footer>
+
+<?php include("public/views/templates/footer.php") ?>
 </body>
 
 

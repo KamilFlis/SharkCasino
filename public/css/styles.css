@@ -1,6 +1,6 @@
 body {
     background: transparent linear-gradient(0deg, #21212A, #323234 100%);
-    margin: 0;
+    margin: 0 auto;
 }
 
 li {
@@ -10,28 +10,26 @@ li {
 .base-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100vh;
 }
 
-nav {
+.topnav {
     width: 100%;
-    height: 10vh;
+    height: 10%;
     background: #202020;
+    overflow: hidden;
     display: grid;
     position: fixed;
-    grid-template-columns: 35% 45% 20%;
+    grid-template-columns: 35% 60% 5%;
     align-items: center;
+}
+
+.icon {
+    display: none;
 }
 
 .logo {
-    margin: 0.5em;
-    margin-left: 3em;
+    margin: 0.5em 0.5em 0.5em 3em;
     height: 90%;
-}
-
-.banner {
-    width: 100%;
 }
 
 .button {
@@ -42,48 +40,38 @@ nav {
     padding: 0.2rem;
 }
 
-ul.menu-buttons {
+.menu-buttons {
     justify-self: right;
     list-style-type: none;
     font: normal normal normal 1.35rem Arial;
-    letter-spacing: 0.72px;
+    letter-spacing: 1px;
 }
 
-ul.login-buttons {
-    border-radius: 25px;
-    margin-left: 10%;
-    margin-right: 10%;
-    background: transparent linear-gradient(90deg, #223CE3, #A91313 60%) ;
-    padding: 0;
-    list-style-type: none;
-    font: normal normal normal 1.35rem Arial;
-    text-align: center;
-    letter-spacing: 0.72px;
+.menu-buttons>li>a {
+    float: left;
+    text-decoration: none;
+    font-size: 26px;
 }
 
-.login-button {
+.login-button, .register-button {
     color: #FFFFFF;
-    margin: 0.2em;
     text-align: center;
-    margin-right: 6px;
-    letter-spacing: 0.72px;
+    margin: 0.2em 6px 0.2em 0.2em;
+    letter-spacing: 1px;
     padding: 0.2rem;
 }
 
-.register-button {
-    margin: 0.2em;
-    text-align: center;
-    letter-spacing: 0.72px;
-    color: #FFFFFF;
-    padding: 0.2rem;
+.banner {
+    margin-top: 0;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
+.banner>img {
+    width: 100vw;
 }
 
 .qa {
+    display: flex;
+    flex-direction: column;
     background: transparent linear-gradient(0deg, #21212A, #323234 100%);
     width: 100vw;
     font-size: 1.5rem;
@@ -91,16 +79,24 @@ main {
 }
 
 .question-block {
-    display: inline-flex;
     background: #323234;
     border: 1px solid;
     margin: 1%;
     padding: 0.2rem;
-    letter-spacing: 0.72px;
+    letter-spacing: 1px;
+}
+
+.answer-block-expand {
+    display: block;
+    margin-left: 2%;
+}
+
+.answer-block {
+    display: none;
 }
 
 footer {
-    position: fixed;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100vw;
@@ -159,7 +155,7 @@ button {
     align-items: center;
 }
 
-p.quote {
+.quote {
     color: #D3D3D3;
     font-size: 55px;
 }
@@ -168,22 +164,128 @@ p.quote {
     background: #4242496c;
     border-radius: 2em;
     display: flex;
-    margin-top: 10%;
-    height: 15vh;
-    width: 40%;
+    margin-top: 7%;
+    margin-bottom: 2%;
+    width: 70%;
+    align-self: center;
     justify-content: center;
     align-items: center;
-}
-
-.catchphrase h1 {
     color: white;
 }
 
 .games {
-    display: flex;
-    flex-direction: row;
+    align-self: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 2vw;
 }
 
 .games img {
-    margin: 3vw;
+    margin: 2vw;
+    width: 90%;
+}
+
+.title {
+    color: white;
+    align-self: center;
+    font-size: 36px;
+}
+
+@media only screen and (max-device-width: 420px) {
+    * {
+        font-size: 36px;
+    }
+
+    .menu-buttons {
+        display: none
+    }
+
+    .icon {
+        color: white;
+        float: right;
+        display: block;
+    }
+
+    .banner {
+        margin-top: 10vh;
+    }
+
+    .topnav.responsive {
+        display: grid;
+        grid-template-columns: 35% 60% 5%;
+        grid-template-rows: 1fr 2fr;
+        align-items: center;
+        position: fixed;
+        height: auto;
+    }
+
+    .topnav.responsive a.icon {
+        position: relative;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav.responsive>ul.menu-buttons {
+        float: none;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+    }
+
+    .topnav.responsive>ul.menu-buttons>li>a {
+        text-decoration: none;
+        font-size: 36px;
+    }
+
+    .logo {
+        height: 60%;
+        margin: 0 0 0 -3px;
+        transform: translate3d(0, 0, 0);
+    }
+
+    form {
+        margin: auto;
+    }
+
+    .catchphrase {
+        margin-top: 25%;
+    }
+
+    form.login {
+        background: #202020;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+        height: 50vh;
+        border: 1px solid black;
+        border-radius: 33px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+    }
+
+    .logo-login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5em;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .login-container {
+        width: 90vw;
+    }
 }
