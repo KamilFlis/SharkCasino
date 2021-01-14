@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Cleopatra Slots</title>
-    <link rel="stylesheet" href="public/css/slots.css">
+    <link rel="stylesheet" type=text/css href="public/css/slots.css">
     <script type="module" src="public/js/slotsCleopatra/index.js" defer></script>
 </head>
 <body>

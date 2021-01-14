@@ -1,1 +1,3 @@
-<footer>Copyright 2020 | Created by Kamil Flis</footer>
+<footer>
+    <p>Copyright 2020 | Created by Kamil Flis</p>
+</footer>

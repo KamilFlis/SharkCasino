@@ -11,13 +11,10 @@
 <div class="base-container">
     <?php include("public/views/templates/navbar.php") ?>
     <div class="catchphrase">
-        <h1>Play our best cards games!</h1>
+        <h1>Play our jackpot games!</h1>
     </div>
 
     <div class="games">
-        <img src="public/img/coming_soon.jpg" alt="coming soon">
-        <img src="public/img/coming_soon.jpg" alt="coming soon">
-        <img src="public/img/coming_soon.jpg" alt="coming soon">
         <img src="public/img/coming_soon.jpg" alt="coming soon">
         <img src="public/img/coming_soon.jpg" alt="coming soon">
         <img src="public/img/coming_soon.jpg" alt="coming soon">

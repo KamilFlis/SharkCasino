@@ -1,5 +1,5 @@
-import Reel from "./Reel";
-import Symbol from "./Symbol";
+import Reel from "./Reel.js";
+import Symbol from "./Symbol.js";
 
 export default class Slot {
   constructor(domElement) {
@@ -24,8 +24,7 @@ export default class Slot {
     this.container = domElement;
 
     this.reels = Array.from(this.container.getElementsByClassName("reel")).map(
-      (reelContainer, idx) =>
-        new Reel(reelContainer, idx, this.currentSymbols[idx])
+      (reelContainer, idx) => new Reel(reelContainer, idx, this.currentSymbols[idx])
     );
 
     this.spinButton = document.querySelector(".spin");

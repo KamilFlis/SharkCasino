@@ -6,7 +6,7 @@ require_once __DIR__."/../models/Wallet.php";
 class WalletRepository extends Repository {
 
     public function getWallet(int $walletId): ?Wallet {
-        $statement = $this->database->connect()->prepare("SELECT * FROM public.wallet WHERE id = ?");
+        $statement = $this->database->connect()->prepare("SELECT * FROM public.wallets WHERE id = ?");
         $statement->bindParam(1, $walletId, PDO::PARAM_INT);
         $statement->execute();
 
@@ -20,27 +20,31 @@ class WalletRepository extends Repository {
     }
 
     public function updateAmount(int $walletId, $amount) {
-        $statement = $this->database->connect()->prepare("UPDATE public.wallet SET amount = ? WHERE id = ?;");
+        $statement = $this->database->connect()->prepare("UPDATE public.wallets SET amount = ? WHERE id = ?;");
         $statement->bindParam(1, $amount, PDO::PARAM_INT);
         $statement->bindParam(2, $walletId, PDO::PARAM_STR);
         $statement->execute();
     }
 
-    public function addWallet(float $amount) {
-        $statement = $this->database->connect()->prepare("INSERT INTO public.wallet (amount) VALUES (:amount);");
-        $statement->bindParam(":amount", $amount, PDO::PARAM_STR);
+    public function addWallet(Wallet $wallet): void {
+        $statement = $this->database->connect()->prepare("INSERT INTO public.wallets (amount) VALUES (?);");
+        $statement->execute([$wallet->getAmount()]);
 
-        $statement->execute();
+    }
 
-        $getStatement = $this->database->connect()->prepare("SELECT * FROM public.wallet ORDER BY wallet.id DESC LIMIT 1");
-        $getStatement->execute();
+    // TODO: find a way to select proper wallet
+    public function getWalletId(Wallet $wallet): ?int {
+        $statement = $this->database->connect()->prepare("
+                SELECT * FROM public.wallets WHERE amount = ? ORDER BY id DESC LIMIT 1;
+        ");
+        $statement->execute([$wallet->getAmount()]);
 
-        $wallet = $getStatement->fetch(PDO::FETCH_ASSOC);
-        if($wallet == false) {
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+        if($data == false) {
             return null;
         }
 
-        return $wallet["id"];
+        return $data["id"];
     }
 
 

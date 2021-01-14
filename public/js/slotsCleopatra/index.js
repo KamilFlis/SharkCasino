@@ -1,3 +1,3 @@
-import Slot from "./Slot";
+import Slot from "./Slot.js";
 
 new Slot(document.querySelector(".slots"));

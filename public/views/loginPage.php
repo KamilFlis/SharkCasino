@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 
 <html lang="eng">
-    <head>
-        <title>Shark Casino</title>
-        <link rel="stylesheet" href="public/css/styles.css">
-    </head>
+<head>
+    <title>Shark Casino</title>
+    <link rel="stylesheet" type=text/css href="public/css/styles.css">
+</head>
 
-    <body>
-        <div class="container">
-            <div class="logo-login">
-                <img src="public/img/logo.png" alt="logo">
-                <p class="quote">Play to win!</p>
-            </div>
-           
-            <div class="login-container">
-                <form class="login" action="login" method="POST">
-                    <input name="username" type="text" placeholder="username">
-                    <input name="password" type="password" placeholder="password">
-                    <button type="submit">Login</button>
-                    <div class="messages">
-                        <?php if(isset($messages)) {
-                            foreach($messages as $message) {
-                                echo $message;
-                            }
+<body>
+    <?php include("public/views/templates/loginLogo.php") ?>
+        <div class="login-container">
+            <form class="login" action="login" method="POST">
+                <input name="username" type="text" placeholder="username">
+                <input name="password" type="password" placeholder="password">
+                <button type="submit">Login</button>
+                <div class="messages">
+                    <?php if(isset($messages)) {
+                        foreach($messages as $message) {
+                            echo $message;
                         }
-                        ?>
-                    </div>
-                </form>
-            </div>
+                    }
+                    ?>
+                </div>
+            </form>
         </div>
-        <footer>
-            Copyright 2020 | Created by Kamil Flis
-        </footer>
-    </body>
-
-
+    </div>
+    <?php include("public/views/templates/footer.php") ?>
+</body>
 </html>
