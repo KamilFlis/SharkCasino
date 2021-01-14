@@ -6,11 +6,11 @@ require_once __DIR__."/../models/User.php";
 class UserRepository extends Repository {
 
     public function getWalletAmountByUsername($username): float {
-        $statement = $this->database->connect()->prepare("SELECT amount FROM public.users INNER JOIN wallet w ON w.id = users.wallet_id AND username = :username");
+        $statement = $this->database->connect()->prepare("SELECT amount FROM public.users INNER JOIN wallets w ON w.id = users.wallet_id AND username = :username");
         $statement->bindParam(":username", $username, PDO::PARAM_STR);
         $statement->execute();
 
-        $wallet = $statement->fetch(PDO::FETCH_NUM);
+        $wallet = $statement->fetch(PDO::FETCH_ASSOC);
         return floatval($wallet["amount"]);
     }
 
@@ -34,14 +34,17 @@ class UserRepository extends Repository {
             $user["password"],
             $user["name"],
             $user["surname"],
-            $user["wallet_id"]
+            $user["phone_number"],
+            $user["bank_account_number"],
+            $user["wallet_id"],
+            $user["address_id"]
         );
     }
 
     public function addUser(User $user) {
         $statement = $this->database->connect()->prepare("
-                INSERT INTO public.users (username, email, password, name, surname, wallet_id) 
-                VALUES (?, ?, ?, ?, ?, ?);
+                INSERT INTO public.users (username, email, password, name, surname, phone_number, bank_account_number, wallet_id, address_id) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
         ");
 
         $statement->execute([
@@ -50,7 +53,11 @@ class UserRepository extends Repository {
             $user->getPassword(),
             $user->getName(),
             $user->getSurname(),
-            $user->getWalletId()
+            $user->getPhoneNumber(),
+            $user->getBankAccountNumber(),
+            $user->getWalletId(),
+            $user->getAddressId()
         ]);
     }
+
 }

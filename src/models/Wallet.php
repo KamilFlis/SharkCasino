@@ -3,9 +3,9 @@
 
 class Wallet {
 
-    private $amount;
+    private float $amount;
 
-    public function __construct(float $amount) {
+    public function __construct(float $amount = 0) {
         $this->amount = $amount;
     }
 
@@ -16,4 +16,8 @@ class Wallet {
     public function setAmount(float $amount) {
         $this->amount = $amount;
     }
+
+
+
+
 }

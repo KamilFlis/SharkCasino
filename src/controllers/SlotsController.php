@@ -33,7 +33,7 @@ class SlotsController extends AppController {
             header("Content-Type: application/json");
             http_response_code(200);
 
-            $data = ["money" => $userService->getUserWalletByUsername($decoded["username"])->getAmount()];
+            $data = ["money" => $userService->getWalletAmountByUsername($decoded["username"])];
             echo json_encode($data);
         }
     }

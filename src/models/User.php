@@ -3,20 +3,27 @@
 
 class User {
 
-    private $username;
-    private $email;
-    private $password;
-    private $name;
-    private $surname;
-    private $walletId;
+    private string $username;
+    private string $email;
+    private string $password;
+    private string $name;
+    private string $surname;
+    private string $phoneNumber;
+    private string $bankAccountNumber;
+    private int $walletId;
+    private int $addressId;
 
-    public function __construct(string $username, string $email, string $password, string $name, string $surname, int $walletId) {
+    public function __construct(string $username, string $email, string $password, string $name, string $surname,
+                                string $phoneNumber, string $bankAccountNumber, int $walletId, int $addressId) {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->surname = $surname;
+        $this->phoneNumber = $phoneNumber;
+        $this->bankAccountNumber = $bankAccountNumber;
         $this->walletId = $walletId;
+        $this->addressId = $addressId;
     }
 
     public function getUsername(): string {
@@ -66,4 +73,31 @@ class User {
     public function setWalletId(int $walletId): void {
         $this->walletId = $walletId;
     }
+
+    public function getAddressId(): int {
+        return $this->addressId;
+    }
+
+    public function setAddressId(int $addressId): void {
+        $this->addressId = $addressId;
+    }
+
+    public function getPhoneNumber(): string {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(string $phoneNumber): void {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function getBankAccountNumber(): string {
+        return $this->bankAccountNumber;
+    }
+
+    public function setBankAccountNumber(string $bankAccountNumber): void {
+        $this->bankAccountNumber = $bankAccountNumber;
+    }
+
+
+
 }
