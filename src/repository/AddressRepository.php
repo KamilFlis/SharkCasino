@@ -51,4 +51,10 @@ class AddressRepository extends Repository {
         $data = $statement->fetch(PDO::FETCH_ASSOC);
         return $data["id"];
     }
+
+    public function getAddressView(string $username) {
+        $statement = $this->database->connect()->prepare('SELECT * FROM "vUser_address" WHERE username = :username;');
+        $statement->execute([$username]);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }

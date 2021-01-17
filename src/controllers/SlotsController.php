@@ -1,14 +1,20 @@
 <?php
 
-require_once 'AppController.php';
+require_once "AppController.php";
 require_once __DIR__.'/../services/UserService.php';
 
 class SlotsController extends AppController {
 
+    private UserService $userService;
+
+    public function __construct() {
+        parent::__construct();
+        $this->userService = new UserService();
+    }
+
     public function slotsCleopatra() {
-        $userService = new UserService();
         if(isset($_SESSION["username"])) {
-            $amount = $userService->getWalletAmountByUsername($_SESSION["username"]);
+            $amount = $this->userService->getWalletAmountByUsername($_SESSION["username"]);
             $this->render("slotsCleopatra", ["messages" => [$amount]]);
         } else {
             echo '<script>alert("You must be logged in")</script>';
@@ -17,7 +23,6 @@ class SlotsController extends AppController {
     }
 
     public function getMoney() {
-
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]): "";
 
         if($contentType === "application/json") {
@@ -27,21 +32,13 @@ class SlotsController extends AppController {
             $money = $decoded["money"];
             $money = $decoded["win"] ? $money + 100 : $money - 10;
 
-            $userService = new UserService();
-            $userService->setWalletAmountByUsername($decoded["username"], $money);
+            $this->userService->setWalletAmountByUsername($decoded["username"], $money);
 
             header("Content-Type: application/json");
             http_response_code(200);
 
-            $data = ["money" => $userService->getWalletAmountByUsername($decoded["username"])];
+            $data = ["money" => $this->userService->getWalletAmountByUsername($decoded["username"])];
             echo json_encode($data);
         }
     }
-
-    public function getUsername() {
-        header("Content-Type: application/json");
-        http_response_code(200);
-        echo json_encode(["username" => $_SESSION["username"]]);
-    }
-
 }

@@ -6,7 +6,9 @@ require_once __DIR__."/../models/User.php";
 class UserRepository extends Repository {
 
     public function getWalletAmountByUsername($username): float {
-        $statement = $this->database->connect()->prepare("SELECT amount FROM public.users INNER JOIN wallets w ON w.id = users.wallet_id AND username = :username");
+        $statement = $this->database->connect()->prepare("
+            SELECT amount FROM public.users INNER JOIN wallets w ON w.id = users.wallet_id AND username = :username
+        ");
         $statement->bindParam(":username", $username, PDO::PARAM_STR);
         $statement->execute();
 

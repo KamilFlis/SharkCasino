@@ -44,7 +44,7 @@ export default class Slot {
     let username = null;
     await this.getUsername().then(value => {
       username = value["username"];
-    })
+    });
 
     const data = {
       username: username,

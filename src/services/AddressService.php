@@ -31,4 +31,8 @@ class AddressService {
 
         return $address;
     }
+
+    public function getAddress(string $username) {
+        return $this->addressRepository->getAddressView($username);
+    }
 }
