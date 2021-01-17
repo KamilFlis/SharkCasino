@@ -40,8 +40,6 @@ class UserService {
 
         $user = new User($username, $email, $password, $name, $surname, $phoneNumber, $bankAccountNumber, $wallet_id, $addressId);
         $this->userRepository->addUser($user);
-
-
     }
 
 

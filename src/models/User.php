@@ -15,6 +15,7 @@ class User {
 
     public function __construct(string $username, string $email, string $password, string $name, string $surname,
                                 string $phoneNumber, string $bankAccountNumber, int $walletId, int $addressId) {
+
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;

@@ -1,10 +1,12 @@
 body {
-    background: transparent linear-gradient(0deg, #21212A, #323234 100%);
+    /*background: transparent linear-gradient(0deg, #21212A, #323234 100%);*/
+
+    background: #303030;
     margin: 0 auto;
     position: relative;
 }
 
-li {
+.menu-buttons>li {
     display: inline;
 }
 
@@ -28,15 +30,19 @@ input[type=number] {
     padding-bottom: 2.5rem;
 }
 
+.nav-placeholder {
+    height: 10vh;
+}
+
 .checkbox {
     display: flex;
 }
 
 .topnav {
-    width: 100%;
-    height: 10%;
     background: #202020;
     overflow: hidden;
+    width: 100%;
+    height: 10%;
     display: grid;
     position: fixed;
     grid-template-columns: 35% 60% 5%;
@@ -76,10 +82,6 @@ input[type=number] {
     float: left;
     text-decoration: none;
     font-size: 26px;
-}
-
-.banner {
-    margin-top: 0;
 }
 
 .banner>img {
@@ -240,10 +242,6 @@ button {
         display: block;
     }
 
-    .banner {
-        margin-top: 10vh;
-    }
-
     .topnav.responsive {
         display: grid;
         grid-template-columns: 35% 60% 5%;
@@ -283,10 +281,6 @@ button {
 
     form {
         margin: auto;
-    }
-
-    .catchphrase {
-        margin-top: 25%;
     }
 
     form.login {

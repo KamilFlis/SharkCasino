@@ -9,7 +9,7 @@
             <li>
                 <a href="logout" class="button">Log out</a>
             </li>
-            <li><a href="accountInfo" class="button">
+            <li><a href="accountInfoPage" class="button">
                     <?php
                     if(isset($_SESSION["name"])) {
                         echo "Welcome ".$_SESSION["name"];
@@ -28,3 +28,5 @@
         </a>
     </div>
 </nav>
+
+<div class="nav-placeholder"></div>

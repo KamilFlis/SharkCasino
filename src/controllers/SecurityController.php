@@ -1,13 +1,12 @@
 <?php session_start();
 
-require_once 'AppController.php';
+require_once "AppController.php";
 require_once __DIR__.'/../models/User.php';
 require_once __DIR__."/../repository/UserRepository.php";
 
 class SecurityController extends AppController {
 
     public function login() {
-
         $userRepository = new UserRepository();
 
         if(!$this->isPost()) {
@@ -18,10 +17,6 @@ class SecurityController extends AppController {
         $password = $_POST["password"];
 
         $user = $userRepository->getUser($username);
-        if($user) {
-            $_SESSION["username"] = $user->getUsername();
-            $_SESSION["name"] = $user->getName();
-        }
 
         if(!$user) {
             return $this->render("loginPage", ["messages" => ["User doesn't exist!"]]);
@@ -31,9 +26,12 @@ class SecurityController extends AppController {
             return $this->render("loginPage", ["messages" => ["Wrong username!"]]);
         }
 
-        if($user->getPassword() !== $password) {
+        if(!password_verify($password, $user->getPassword())) {
             return $this->render("loginPage", ["messages" => ["Wrong password!"]]);
         }
+
+        $_SESSION["username"] = $user->getUsername();
+        $_SESSION["name"] = $user->getName();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/startPage");
@@ -91,7 +89,7 @@ class SecurityController extends AppController {
         }
 
         /* TODO: add account info page -> to top up wallet
-            ERD diagram + expanded database, more tables (session, login history?) and views
+            ERD diagram + expanded database, more tables (session, login history?)
             add user roles -> for normal user + admin
         */
 
@@ -99,7 +97,7 @@ class SecurityController extends AppController {
         $userService->addUser(
             $username,
             $email,
-            $password,
+            password_hash($password, PASSWORD_DEFAULT, ["cost" => PASSWORD_BCRYPT_DEFAULT_COST]),
             $name,
             $surname,
             $phoneNumber,
@@ -113,6 +111,17 @@ class SecurityController extends AppController {
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/startPage");
+    }
+
+    public function changePassword() {
+        if(!$this->isPost()) {
+            return $this->render("securityPage");
+        }
+
+        $oldPassword = $_POST["oldPassword"];
+        $newPassword = $_POST["newPassword"];
+        $confirmPassword = $_POST["confirmPassword"];
+
 
     }
 
