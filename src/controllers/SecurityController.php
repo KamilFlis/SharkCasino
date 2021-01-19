@@ -6,9 +6,14 @@ require_once __DIR__."/../repository/UserRepository.php";
 
 class SecurityController extends AppController {
 
-    public function login() {
-        $userRepository = new UserRepository();
+    private UserRepository $userRepository;
 
+    public function __construct() {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
+
+    public function login() {
         if(!$this->isPost()) {
             $this->render("loginPage");
         }
@@ -16,8 +21,7 @@ class SecurityController extends AppController {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        $user = $userRepository->getUser($username);
-
+        $user = $this->userRepository->getUser($username);
         if(!$user) {
             return $this->render("loginPage", ["messages" => ["User doesn't exist!"]]);
         }
@@ -57,24 +61,19 @@ class SecurityController extends AppController {
         $bankAccountNumber = $_POST["bankAccountNumber"];
         $conditions = $_POST["conditions"];
 
-        // unique username
-        $userRepository = new UserRepository();
-        $user = $userRepository->getUser($username);
+        $user = $this->userRepository->getUser($username);
         if($user !== null) {
             return $this->render("registerPage", ["messages" => ["Username already exists"]]);
         }
 
-        // email pattern
         if(!preg_match("/\S+@\S+\.\S+/", $email)) {
             return $this->render("registerPage", ["messages" => ["Incorrect email format"]]);
         }
 
-        // same confirmed password
         if($password !== $confirmPassword) {
-            return $this->render("registerPage", ["messages" => ["Passwords doesn't match"]]);
+            return $this->render("registerPage", ["messages" => ["Passwords don't match"]]);
         }
 
-        // phone number is 9 digit
         if(strlen($phoneNumber) !== 9) {
             return $this->render("registerPage", ["messages" => ["Wrong phone number format"]]);
         }
@@ -83,14 +82,16 @@ class SecurityController extends AppController {
             return $this->render("registerPage", ["messages" => ["Wrong bank account number format"]]);
         }
 
-        // checked terms and conditions
         if($conditions == null) {
             return $this->render("registerPage", ["messages" => ["You must accept terms and conditions"]]);
         }
 
-        /* TODO: add account info page -> to top up wallet
+
+
+        /* TODO: add top up wallet
             ERD diagram + expanded database, more tables (session, login history?)
             add user roles -> for normal user + admin
+            check if phone number or bank account number exist in db
         */
 
         $userService = new UserService();
@@ -122,7 +123,25 @@ class SecurityController extends AppController {
         $newPassword = $_POST["newPassword"];
         $confirmPassword = $_POST["confirmPassword"];
 
+        $user = $this->userRepository->getUser($_SESSION["username"]);
+        if(!password_verify($oldPassword, $user->getPassword())) {
+            return $this->render("securityPage", ["messages" => ["Wrong old password"]]);
+        }
 
+        if($newPassword !== $confirmPassword) {
+            return $this->render("securityPage",  ["messages" => ["Passwords don't match"]]);
+        }
+
+        $this->userRepository->setPassword($_SESSION["username"], password_hash($newPassword, PASSWORD_DEFAULT, ["cost" => PASSWORD_BCRYPT_DEFAULT_COST]));
+        return $this->render("securityPage",  ["messages" => ["Password changed successfully"]]);
+    }
+
+    public function logout() {
+        session_unset();
+        session_destroy();
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/startPage");
     }
 
 }
