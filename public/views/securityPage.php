@@ -20,7 +20,15 @@
                 <input name="oldPassword" type="password" placeholder="Old password">
                 <input name="newPassword" type="password" placeholder="New password">
                 <input name="confirmPassword" type="password" placeholder="Confirm password">
-            <button type="submit">Change password</button>
+                <button type="submit">Change password</button>
+                <div class="messages">
+                    <?php if(isset($messages)) {
+                        foreach($messages as $message) {
+                            echo $message;
+                        }
+                    }
+                    ?>
+                </div>
             </form>
         </div>
     </div>

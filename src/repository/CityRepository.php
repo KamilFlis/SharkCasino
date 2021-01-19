@@ -7,7 +7,7 @@ class CityRepository extends Repository {
 
     public function addCity(City $city): void {
         $statement = $this->database->connect()->prepare("
-                INSERT INTO public.cities (name, country_id) VALUES (?, ?);
+                INSERT INTO public.cities (name, country_id) VALUES (?, ?) ON CONFLICT DO NOTHING;
         ");
 
         $statement->execute([

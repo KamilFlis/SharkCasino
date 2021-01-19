@@ -31,23 +31,11 @@ export default class Slot {
     this.spinButton.addEventListener("click", () => this.spin());
   }
 
-  // get username from $_SESSION variable from server
-  async getUsername() {
-    const response = await fetch("/getUsername");
-    return await response.json();
-  }
-
   async updateMoney(win) {
     const moneyMessage = document.querySelector(".message");
     const moneyValue = parseFloat(moneyMessage.innerHTML.split(" ").slice(-1)[0]);
 
-    let username = null;
-    await this.getUsername().then(value => {
-      username = value["username"];
-    });
-
     const data = {
-      username: username,
       money: moneyValue,
       win: win
     };

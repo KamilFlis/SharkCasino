@@ -18,7 +18,7 @@
             <h1>Wallet</h1>
             <h2 class="label">Amount</h2>
             <h1 id="amount"></h1>
-            <button>Top up</button>
+            <button class="top-up">Top up</button>
         </div>
     </div>
 </div>

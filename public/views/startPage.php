@@ -36,15 +36,15 @@
             <div class="qa">
                 <div class="question-block" id="question_1" onclick="expand(this)">How to play</div>
                 <section class="answer-block">
-                    <p class="answer">gfkgkordghkofhkhkdohkdorhkdorhkdor</p>
+                    <p class="answer">Login in and select your favourite game!</p>
                 </section>
                 <div class="question-block" id="question_2" onclick="expand(this)">How to pay in</div>
                 <section class="answer-block">
-                    <p>hjtfkjygfytgfyuyr</p>
+                    <p>After logging in click on "Welcome 'your name'". Then move to wallet section and click Top up button!</p>
                 </section>
-                <div class="question-block" id="question_3" onclick="expand(this)">Questions (FAQ)</div>
+                <div class="question-block" id="question_3" onclick="expand(this)">Play responsibly</div>
                 <section class="answer-block">
-                    <p>agdshdf</p>
+                    <p>You are playing for money. Be responsible!</p>
                 </section>
             </div>
         </div>

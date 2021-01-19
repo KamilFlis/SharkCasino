@@ -7,7 +7,7 @@ class UserRepository extends Repository {
 
     public function getWalletAmountByUsername($username): float {
         $statement = $this->database->connect()->prepare("
-            SELECT amount FROM public.users INNER JOIN wallets w ON w.id = users.wallet_id AND username = :username
+            SELECT amount FROM public.users u INNER JOIN public.wallets w ON w.id = u.wallet_id AND u.username = :username
         ");
         $statement->bindParam(":username", $username, PDO::PARAM_STR);
         $statement->execute();
@@ -60,6 +60,19 @@ class UserRepository extends Repository {
             $user->getWalletId(),
             $user->getAddressId()
         ]);
+    }
+
+    public function setPassword(string $username, string $password) {
+        $statement = $this->database->connect()->prepare("
+            UPDATE public.users
+            SET password = :password
+            WHERE username = :username;
+        ");
+
+        $statement->bindParam(":password", $password);
+        $statement->bindParam(":username", $username);
+
+        $statement->execute();
     }
 
 }

@@ -30,11 +30,23 @@
     margin-bottom: 0;
 }
 
-@media only screen and (max-device-width: 420px) {
+.change-password {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    align-items: end;
+}
 
-    * {
-        font-size: 42px;
-    }
+.change-password>button {
+    margin-right: 12%;
+    height: 20%;
+}
+
+.top-up {
+    width: 10%;
+}
+
+@media only screen and (max-device-width: 420px) {
 
     .side-menu .menu-buttons {
         display: block;
@@ -45,6 +57,19 @@
     }
 
     .side-menu-placeholder {
+        width: 20%;
+    }
+
+    .change-password {
+        margin: 0;
+        width: 80%;
+    }
+
+    .change-password>button {
+        margin-right: 10vw;
+    }
+
+    .top-up {
         width: 20%;
     }
 }

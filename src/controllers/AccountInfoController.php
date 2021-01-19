@@ -15,12 +15,12 @@ class AccountInfoController extends AppController {
         parent::__construct();
         $this->userRepository = new UserRepository();
         $this->addressService = new AddressService();
+        $this->userService = new UserService();
     }
 
     public function accountInfoPage() {
         if(isset($_SESSION["username"])) {
             $this->render("accountInfoPage");
-            $this->getGeneralInfo();
         } else {
             echo '<script>alert("You must be logged in")</script>';
             $this->render("startPage");
@@ -30,7 +30,6 @@ class AccountInfoController extends AppController {
     public function addressInfoPage() {
         if(isset($_SESSION["username"])) {
             $this->render("addressInfoPage");
-            $this->getAddressInfo();
         } else {
             echo '<script>alert("You must be logged in")</script>';
             $this->render("startPage");
@@ -38,36 +37,28 @@ class AccountInfoController extends AppController {
     }
 
     public function getAddressInfo() {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-
-        if ($contentType === "application/json") {
-            $content = trim(file_get_contents("php://input"));
-            $decoded = json_decode($content, true);
-
-            header('Content-type: application/json');
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]): "";
+        if($contentType === "application/json") {
+            header("Content-Type: application/json");
             http_response_code(200);
-
-            $data = $this->addressService->getAddress($decoded["username"]);
+            $data = $this->addressService->getAddress($_SESSION["username"]);
             echo json_encode($data);
         }
     }
 
     public function getGeneralInfo() {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]): "";
 
-        if ($contentType === "application/json") {
-            $content = trim(file_get_contents("php://input"));
-            $decoded = json_decode($content, true);
-
-            header('Content-type: application/json');
+        if($contentType === "application/json") {
+            header("Content-Type: application/json");
             http_response_code(200);
 
-            $user = $this->userRepository->getUser($decoded["username"]);
+            $user = $this->userRepository->getUser($_SESSION["username"]);
             $data = [
-              "name" => $user->getName(),
-              "surname" => $user->getSurname(),
-              "email" => $user->getEmail(),
-              "phoneNumber" => $user->getPhoneNumber()
+                "name" => $user->getName(),
+                "surname" => $user->getSurname(),
+                "email" => $user->getEmail(),
+                "phoneNumber" => $user->getPhoneNumber()
             ];
             echo json_encode($data);
         }
@@ -85,7 +76,6 @@ class AccountInfoController extends AppController {
     public function walletPage() {
         if(isset($_SESSION["username"])) {
             $this->render("walletPage");
-            $this->getWalletInfo();
         } else {
             echo '<script>alert("You must be logged in")</script>';
             $this->render("startPage");
@@ -93,17 +83,11 @@ class AccountInfoController extends AppController {
     }
 
     public function getWalletInfo() {
-        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-
-        if ($contentType === "application/json") {
-            $content = trim(file_get_contents("php://input"));
-            $decoded = json_decode($content, true);
-
-            header('Content-type: application/json');
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]): "";
+        if($contentType === "application/json") {
+            header("Content-Type: application/json");
             http_response_code(200);
-
-            $amount = $this->userService->getWalletAmountByUsername($decoded["username"]);
-//            $data = ;
+            $amount = $this->userService->getWalletAmountByUsername($_SESSION["username"]);
             echo json_encode(["amount" => $amount]);
         }
     }

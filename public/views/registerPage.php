@@ -5,9 +5,10 @@
     <title>Shark Casino</title>
     <link rel="stylesheet" type=text/css href="public/css/styles.css">
     <script type="text/javascript" src="public/js/validate.js" defer></script>
+    <script type="text/javascript" src="public/js/search.js" defer></script>
 </head>
 
-<body>
+<body onload="getCountries();">
     <?php include("public/views/templates/loginLogo.php") ?>
         <div class="login-container">
             <form class="register" action="register" method="POST">
@@ -22,7 +23,15 @@
                 <input name="postcode" type="number" placeholder="Postcode">
                 <input name="street" type="text" placeholder="Street">
                 <input name="city" type="text" placeholder="City">
-                <input name="country" type="text" placeholder="Country">
+
+
+<!--                <input name="country" type="text" placeholder="Country">-->
+                <label>Country
+                    <select id=country name="country">
+                        <option value="Austria">Austria</option>
+                    </select>
+                </label>
+
                 <input name="bankAccountNumber" type="number" placeholder="Bank account number">
                 <div class="checkbox">
                     <input id="conditions" name="conditions" type="checkbox">

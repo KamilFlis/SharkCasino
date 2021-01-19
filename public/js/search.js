@@ -1,25 +1,12 @@
-async function getUsername() {
-    const response = await fetch("/getUsername");
-    return await response.json();
-}
-
 async function getGeneralData() {
-    let username = null;
-    await this.getUsername().then(value => {
-        username = value["username"];
-    });
-
-    const data = { username: username };
     fetch("/getGeneralInfo", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    }).then(r => r.json())
-      .then(data => {
-          loadGeneralData(data);
-      });
+        }
+    })
+        .then(r => r.json())
+        .then(data => loadGeneralData(data));
 }
 
 function loadGeneralData(data) {
@@ -30,22 +17,14 @@ function loadGeneralData(data) {
 }
 
 async function getAddressData() {
-    let username = null;
-    await this.getUsername().then(value => {
-        username = value["username"];
-    });
-
-    const data = { username: username };
     fetch("/getAddressInfo", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    }).then(r => r.json())
-        .then(data => {
-            loadAddressData(data);
-        });
+        }
+    })
+        .then(r => r.json())
+        .then(data => loadAddressData(data));
 }
 
 function loadAddressData(data) {
@@ -57,21 +36,37 @@ function loadAddressData(data) {
 }
 
 async function getWalletData() {
-    let username = null;
-    await this.getUsername().then(value => {
-        username = value["username"];
-    });
-
-    const data = { username: username };
     fetch("/getWalletInfo", {
-        method: "POST",
+        method: "GET",
         headers: {
             "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    }).then(r => r.json())
-        .then(data => {
-            document.querySelector("#amount").innerHTML = data["amount"];
-        });
+        }
+    })
+        .then(r => r.json())
+        .then(data => loadWalletData(data));
+}
 
+function loadWalletData(data) {
+    document.querySelector("#amount").innerHTML = data["amount"];
+}
+
+function getCountries() {
+    fetch("/getCountries", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(r => r.json())
+        .then(data => loadCountriesData(data));
+}
+
+function loadCountriesData(data) {
+    const section = document.querySelector("#country");
+    data.forEach(element => {
+        const option = document.createElement("option");
+        option.value = element["name"];
+        option.innerHTML = element["name"];
+        section.appendChild(option);
+    });
 }
