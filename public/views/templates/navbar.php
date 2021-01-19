@@ -29,4 +29,4 @@
     </div>
 </nav>
 
-<div class="nav-placeholder"></div>
+<div class="nav-placeholder" id="nav-placeholder"></div>
