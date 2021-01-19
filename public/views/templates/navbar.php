@@ -7,7 +7,7 @@
         <li><a href="jackpotPage" class="button">Jackpot</a></li>
         <?php if(isset($_SESSION["name"])):?>
             <li>
-                <a href="logout" class="button">Log out</a>
+                <a href="logout"  type="submit" class="button">Log out</a>
             </li>
             <li><a href="accountInfoPage" class="button">
                     <?php
