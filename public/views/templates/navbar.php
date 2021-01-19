@@ -7,7 +7,7 @@
         <li><a href="jackpotPage" class="button">Jackpot</a></li>
         <?php if(isset($_SESSION["name"])):?>
             <li>
-                <a href="logout"  type="submit" class="button">Log out</a>
+                <a href="logout" class="button">Log out</a>
             </li>
             <li><a href="accountInfoPage" class="button">
                     <?php
@@ -24,7 +24,7 @@
     </ul>
     <div>
         <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-            <i class="fa fa-bars"></i>
+            <img src="public/img/menu.png" alt="menu">
         </a>
     </div>
 </nav>
