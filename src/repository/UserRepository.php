@@ -75,4 +75,17 @@ class UserRepository extends Repository {
         $statement->execute();
     }
 
+    public function checkIfUserParameterExist(string $email, string $phoneNumber, string $bankAccountNumber) {
+        $statement = $this->database->connect()->prepare("
+                SELECT check_if_user_parameters_exist(:email, :phoneNumber, :bankAccountNumber);
+        ");
+
+        $statement->execute([
+           ":email" => $email,
+           ":phoneNumber" => $phoneNumber,
+           ":bankAccountNumber" => $bankAccountNumber
+        ]);
+
+        return $statement->fetchColumn(0);
+    }
 }

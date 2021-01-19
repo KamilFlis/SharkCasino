@@ -23,15 +23,11 @@
                 <input name="postcode" type="number" placeholder="Postcode">
                 <input name="street" type="text" placeholder="Street">
                 <input name="city" type="text" placeholder="City">
-
-
-<!--                <input name="country" type="text" placeholder="Country">-->
                 <label>Country
                     <select id=country name="country">
                         <option value="Austria">Austria</option>
                     </select>
                 </label>
-
                 <input name="bankAccountNumber" type="number" placeholder="Bank account number">
                 <div class="checkbox">
                     <input id="conditions" name="conditions" type="checkbox">
@@ -48,7 +44,6 @@
                 </div>
             </form>
         </div>
-    </div>
     <?php include("public/views/templates/footer.php") ?>
 </body>
 </html>
