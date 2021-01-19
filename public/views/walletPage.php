@@ -18,7 +18,18 @@
             <h1>Wallet</h1>
             <h2 class="label">Amount</h2>
             <h1 id="amount"></h1>
-            <button class="top-up">Top up</button>
+            <form class="top-up" action="topUp" method="POST">
+                <input name="amount" type="number" placeholder="Amount">
+                <button>Top up</button>
+            </form>
+            <div class="messages">
+                <?php if(isset($messages)) {
+                    foreach($messages as $message) {
+                        echo $message;
+                    }
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>

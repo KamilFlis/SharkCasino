@@ -42,8 +42,17 @@
     height: 20%;
 }
 
-.top-up {
-    width: 10%;
+form.top-up {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /*height: 40%;*/
+    width: 20%;
+    margin: 0;
+}
+
+form.top-up>button {
+    height: 100%;
 }
 
 @media only screen and (max-device-width: 420px) {
@@ -69,7 +78,7 @@
         margin-right: 10vw;
     }
 
-    .top-up {
-        width: 20%;
+    form.top-up {
+        width: 100%;
     }
 }

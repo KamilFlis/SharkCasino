@@ -28,5 +28,6 @@ Routing::post("login", "SecurityController");
 Routing::post("register", "SecurityController");
 Routing::post("changePassword", "SecurityController");
 Routing::post("getMoney", "SlotsController");
+Routing::post("topUp", "AccountInfoController");
 
 Routing::run($path);
