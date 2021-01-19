@@ -92,6 +92,26 @@ class AccountInfoController extends AppController {
         }
     }
 
+    public function topUp() {
+        if(!$this->isPost()) {
+            return $this->render("walletPage");
+        }
+
+        $amount = $_POST["amount"];
+        if($amount < 0) {
+            return $this->render("walletPage",  ["messages" => ["Amount can't be lesser than 0"]]);
+        } else if($amount > 1000) {
+            return $this->render("walletPage",  ["messages" => ["To big amount. Play responsibly!"]]);
+        }
+
+        $currentAmount = $this->userService->getWalletAmountByUsername($_SESSION["username"]);
+        $this->userService->setWalletAmountByUsername($_SESSION["username"], $currentAmount + $amount);
+
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/walletPage");
+    }
+
+
 
 
 }
