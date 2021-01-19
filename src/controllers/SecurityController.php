@@ -86,12 +86,22 @@ class SecurityController extends AppController {
             return $this->render("registerPage", ["messages" => ["You must accept terms and conditions"]]);
         }
 
+        $checkDistinct = $this->userRepository->checkIfUserParameterExist($email, $phoneNumber, $bankAccountNumber);
+        if($checkDistinct === "email") {
+            return $this->render("registerPage", ["messages" => ["User with that email already exists"]]);
+        }
 
+        if($checkDistinct === "phoneNumber") {
+            return $this->render("registerPage", ["messages" => ["User with that phone number already exists"]]);
+        }
+
+        if($checkDistinct === "bankAccountNumber") {
+            return $this->render("registerPage", ["messages" => ["User with that bank account number already exists"]]);
+        }
 
         /* TODO: add top up wallet
             ERD diagram + expanded database, more tables (session, login history?)
             add user roles -> for normal user + admin
-            check if phone number or bank account number exist in db
         */
 
         $userService = new UserService();
