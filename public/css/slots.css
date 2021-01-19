@@ -16,23 +16,34 @@ body {
 .slots {
     display: flex;
     justify-content: center;
-    width: 50vw;
-    max-height: calc((3/5) * 45vw);
+    width: 45vw;
+    max-height: calc(3/5 * 42vw);
 }
 
 .reel {
     overflow: hidden;
-    width: 55vw;
+    width: 40vw;
 }
 
 .reel > .icons > img {
     width: calc(100% + 6px);
     margin: -3px 0 0 -3px;
     height: auto;
-    transform: translate3d(0, 0, 0);
 }
 
 .messages {
     font-size: 12px;
     color: white;
+}
+
+@media only screen and (max-device-width: 420px) {
+
+    * {
+        font-size: 36px;
+    }
+
+    .slots {
+        width: 85vw;
+        max-height: calc(3/5 * 80vw);
+    }
 }
