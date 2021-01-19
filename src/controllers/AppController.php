@@ -22,7 +22,6 @@ class AppController {
 
         if(file_exists($templatePath)) {
             extract($variables);
-
             ob_start();
             include $templatePath;
             $output = ob_get_clean();
@@ -31,9 +30,4 @@ class AppController {
         print $output;
     }
 
-    public function getUsername() {
-        header("Content-Type: application/json");
-        http_response_code(200);
-        echo json_encode(["username" => $_SESSION["username"]]);
-    }
 }

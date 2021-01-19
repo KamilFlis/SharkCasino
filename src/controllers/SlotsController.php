@@ -32,12 +32,12 @@ class SlotsController extends AppController {
             $money = $decoded["money"];
             $money = $decoded["win"] ? $money + 100 : $money - 10;
 
-            $this->userService->setWalletAmountByUsername($decoded["username"], $money);
+            $this->userService->setWalletAmountByUsername($_SESSION["username"], $money);
 
             header("Content-Type: application/json");
             http_response_code(200);
 
-            $data = ["money" => $this->userService->getWalletAmountByUsername($decoded["username"])];
+            $data = ["money" => $this->userService->getWalletAmountByUsername($_SESSION["username"])];
             echo json_encode($data);
         }
     }

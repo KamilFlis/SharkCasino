@@ -39,4 +39,25 @@ class CountryRepository extends Repository {
         $data = $statement->fetch(PDO::FETCH_ASSOC);
         return $data["id"];
     }
+
+    public function getAllCountries() {
+        $statement = $this->database->connect()->prepare("
+                SELECT name FROM public.countries;
+        ");
+
+        $statement->execute();
+
+
+        $countries =  $statement->fetchAll(pdo::FETCH_ASSOC);
+//        var_dump($countries);
+        return $countries;
+
+//        foreach($countries as $country) {
+//            foreach($country as $countryName) {
+//                echo $countryName."\n";
+//            }
+//        }
+
+//        echo $countries;
+    }
 }

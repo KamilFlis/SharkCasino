@@ -19,7 +19,6 @@ class AddressService {
     // TODO: add some countries to database and change form to select from list
     public function addAddress(int $flatNumber, string $street, int $postcode, $cityName, $countryName): Address {
         $country = new Country($countryName);
-        $this->countryRepository->addCountry($country);
         $countryId = $this->countryRepository->getCountryId($country);
 
         $city = new City($cityName, $countryId);

@@ -1,6 +1,7 @@
 <?php
 
 require_once "AppController.php";
+require_once __DIR__."/../repository/CountryRepository.php";
 
 class DefaultController extends AppController {
 
@@ -32,8 +33,15 @@ class DefaultController extends AppController {
         $this->render("jackpotPage");
     }
 
-    public function logout() {
-        $this->render("logout");
+    public function getCountries() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]): "";
+        if($contentType === "application/json") {
+            header("Content-Type: application/json");
+            http_response_code(200);
+            $countryRepository = new CountryRepository();
+            $countries = $countryRepository->getAllCountries();
+            echo json_encode($countries);
+        }
     }
 
 }
