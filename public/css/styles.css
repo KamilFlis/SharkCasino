@@ -29,6 +29,7 @@ input[type=number] {
 }
 
 .nav-placeholder {
+    display: block;
     height: 10vh;
 }
 
@@ -239,12 +240,16 @@ button {
         display: block;
     }
 
+    .nav-placeholder.responsive {
+        display: none;
+    }
+
     .topnav.responsive {
         display: grid;
         grid-template-columns: 35% 60% 5%;
         grid-template-rows: 1fr 2fr;
         align-items: center;
-        position: fixed;
+        position: relative;
         height: auto;
     }
 
