@@ -34,7 +34,7 @@ class UserService {
         $address = $addressService->addAddress($flatNumber, $street, $postcode, $cityName, $countryName);
         $addressId = $this->addressRepository->getAddressId($address);
 
-        $wallet = new Wallet(150);
+        $wallet = new Wallet();
         $this->walletRepository->addWallet($wallet);
         $wallet_id = $this->walletRepository->getWalletId($wallet);
 
