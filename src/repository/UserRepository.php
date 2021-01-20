@@ -96,6 +96,13 @@ class UserRepository extends Repository {
 
         $statement->execute([":username" => $username]);
         return $statement->fetch(PDO::FETCH_ASSOC)["id"];
+    }
 
+    public function getAllUsers() {
+        $statement = $this->database->connect()->prepare("
+                SELECT * FROM users;
+        ");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }

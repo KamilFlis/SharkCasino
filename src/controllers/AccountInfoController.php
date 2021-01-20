@@ -20,19 +20,19 @@ class AccountInfoController extends AppController {
 
     public function accountInfoPage() {
         if(isset($_SESSION["username"])) {
-            $this->render("accountInfoPage");
+            return $this->render("accountInfoPage");
         } else {
             echo '<script>alert("You must be logged in")</script>';
-            $this->render("startPage");
+            return $this->render("startPage");
         }
     }
 
     public function addressInfoPage() {
         if(isset($_SESSION["username"])) {
-            $this->render("addressInfoPage");
+            return $this->render("addressInfoPage");
         } else {
             echo '<script>alert("You must be logged in")</script>';
-            $this->render("startPage");
+            return $this->render("startPage");
         }
     }
 
@@ -66,19 +66,19 @@ class AccountInfoController extends AppController {
 
     public function securityPage() {
         if(isset($_SESSION["username"])) {
-            $this->render("securityPage");
+            return $this->render("securityPage");
         } else {
             echo '<script>alert("You must be logged in")</script>';
-            $this->render("startPage");
+            return $this->render("startPage");
         }
     }
 
     public function walletPage() {
         if(isset($_SESSION["username"])) {
-            $this->render("walletPage");
+            return $this->render("walletPage");
         } else {
             echo '<script>alert("You must be logged in")</script>';
-            $this->render("startPage");
+            return $this->render("startPage");
         }
     }
 
@@ -111,7 +111,20 @@ class AccountInfoController extends AppController {
         header("Location: {$url}/walletPage");
     }
 
+    public function usersPage() {
+        if(!isset($_SESSION["username"])) {
+            echo '<script>alert("You must be logged in")</script>';
+            return $this->render("startPage");
+        }
+        $user = $this->userService->getUser($_SESSION["username"]);
+        if($user->hasPrivilege("Show all users")) {
+            var_dump($this->userService->getAllUsers());
 
+            return $this->render("usersPage");
+        }
+
+        return $this->render("startPage");
+    }
 
 
 }

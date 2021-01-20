@@ -2,14 +2,7 @@
 <!DOCTYPE html>
 
 <html lang="eng">
-    <head>
-        <title>Shark Casino</title>
-        <link rel="stylesheet" type=text/css href="public/css/styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script type="text/javascript" src="public/js/hamburger.js" defer></script>
-        <script type="text/javascript" src="public/js/expand.js" defer></script>
-    </head>
-
+<?php include("public/views/templates/header.php") ?>
     <body>
         <div class="base-container">
             <?php include("public/views/templates/navbar.php") ?>

@@ -22,6 +22,7 @@ Routing::get("securityPage", "AccountInfoController");
 Routing::get("walletPage", "AccountInfoController");
 Routing::get("getWalletInfo", "AccountInfoController");
 Routing::get("getCountries", "DefaultController");
+Routing::get("usersPage", "AccountInfoController");
 
 
 Routing::post("login", "SecurityController");
