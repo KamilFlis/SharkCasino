@@ -3,6 +3,8 @@
 require_once "AppController.php";
 require_once __DIR__."/../repository/CountryRepository.php";
 
+require_once __DIR__."/../services/UserService.php";
+
 class DefaultController extends AppController {
 
     public function startPage() {
