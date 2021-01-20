@@ -62,4 +62,8 @@ class UserService {
         return PrivilegedUser::create($user, $roles);
     }
 
+    public function getAllUsers() {
+        return $this->userRepository->getAllUsers();
+    }
+
 }

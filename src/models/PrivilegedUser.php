@@ -11,8 +11,8 @@ class PrivilegedUser extends User {
     }
 
     // way to overload constructor
-    public static function create(User $user, $roles) {
-        $instance = new self(
+    public static function create(User $user, $roles): PrivilegedUser {
+        return new self(
             $user->getUsername(),
             $user->getEmail(),
             $user->getPassword(),
@@ -24,12 +24,11 @@ class PrivilegedUser extends User {
             $user->getAddressId(),
             $roles
         );
-        return $instance;
     }
 
-    public function hasPrivilege($permission) {
+    public function hasPrivilege($permission): bool {
         foreach($this->roles as $role) {
-            if($role->hasPermission()) {
+            if($role->hasPermission($permission)) {
                 return true;
             }
         }

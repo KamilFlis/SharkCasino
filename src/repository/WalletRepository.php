@@ -22,14 +22,13 @@ class WalletRepository extends Repository {
     public function updateAmount(int $walletId, $amount) {
         $statement = $this->database->connect()->prepare("UPDATE public.wallets SET amount = ? WHERE id = ?;");
         $statement->bindParam(1, $amount, PDO::PARAM_INT);
-        $statement->bindParam(2, $walletId, PDO::PARAM_STR);
+        $statement->bindParam(2, $walletId);
         $statement->execute();
     }
 
     public function addWallet(Wallet $wallet): void {
         $statement = $this->database->connect()->prepare("INSERT INTO public.wallets (amount) VALUES (?);");
         $statement->execute([$wallet->getAmount()]);
-
     }
 
     public function getWalletId(Wallet $wallet): ?int {
