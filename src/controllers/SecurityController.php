@@ -99,8 +99,6 @@ class SecurityController extends AppController {
             return $this->render("registerPage", ["messages" => ["User with that bank account number already exists"]]);
         }
 
-        // TODO: ERD diagram
-
         $userService = new UserService();
         $userService->addUser(
             $username,

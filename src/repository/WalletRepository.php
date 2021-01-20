@@ -32,7 +32,6 @@ class WalletRepository extends Repository {
 
     }
 
-    // TODO: find a way to select proper wallet
     public function getWalletId(Wallet $wallet): ?int {
         $statement = $this->database->connect()->prepare("
                 SELECT * FROM public.wallets WHERE amount = ? ORDER BY id DESC LIMIT 1;
