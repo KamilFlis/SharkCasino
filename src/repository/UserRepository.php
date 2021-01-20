@@ -88,4 +88,14 @@ class UserRepository extends Repository {
 
         return $statement->fetchColumn(0);
     }
+
+    public function getUserId(string $username) {
+        $statement = $this->database->connect()->prepare("
+                SELECT id FROM users WHERE username=:username
+        ");
+
+        $statement->execute([":username" => $username]);
+        return $statement->fetch(PDO::FETCH_ASSOC)["id"];
+
+    }
 }

@@ -99,10 +99,7 @@ class SecurityController extends AppController {
             return $this->render("registerPage", ["messages" => ["User with that bank account number already exists"]]);
         }
 
-        /* TODO: add top up wallet
-            ERD diagram + expanded database, more tables (session, login history?)
-            add user roles -> for normal user + admin
-        */
+        // TODO: ERD diagram
 
         $userService = new UserService();
         $userService->addUser(
@@ -153,5 +150,6 @@ class SecurityController extends AppController {
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/startPage");
     }
+
 
 }
