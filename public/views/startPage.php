@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 
 <html lang="eng">
-<?php include("public/views/templates/header.php") ?>
+<head>
+    <title>Shark Casino</title>
+    <link rel="stylesheet" type=text/css href="public/css/styles.css">
+    <script type="text/javascript" src="public/js/expand.js" defer></script>
+    <script type="text/javascript" src="public/js/hamburger.js" defer></script>
+</head>
     <body>
         <div class="base-container">
             <?php include("public/views/templates/navbar.php") ?>
